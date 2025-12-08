@@ -1,6 +1,6 @@
 "use client"
 import { FaHouse } from "react-icons/fa6";
-import { FaUser, FaSearch } from "react-icons/fa";
+import { FaUser, FaSearch, FaGithub} from "react-icons/fa";
 import { IoLogIn } from "react-icons/io5";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { usePathname } from "next/navigation";
@@ -12,6 +12,7 @@ export default function AgoraNavigation() {
     { label: "Profile",   path: "/profile", icon: FaUser },
     { label: "Search",  path: "/search",  icon: FaSearch },
     { label: "Login",      path: "/login",      icon: IoLogIn },
+    { label: "Github Info", path: '/information', icon: FaGithub}
   ];
   return (
     <ListGroup className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-dark z-2" style={{ width: 120 }} id="agora-navigation">
