@@ -18,8 +18,8 @@ export default function AgoraNavigation() {
     <ListGroup className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-dark z-2" style={{ width: 120 }} id="agora-navigation">
       {links.map((link) => (
         <ListGroupItem key={link.label} as={Link} href={link.path}
-          className={`bg-dark text-center border-0
-              ${(pathname.includes(link.label.toLowerCase())) ? "text-primary bg-white" : "text-white bg-dark"}`}>
+          className={`text-center border-0
+              ${(pathname.includes(link.label.toLowerCase())) ? "text-primary bg-secondary" : "text-white bg-dark"}`}>
           {link.icon({ className: "fs-1 text-primary"})}
           <br />
           {link.label}

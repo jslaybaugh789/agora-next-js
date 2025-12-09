@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Row } from "react-bootstrap";
+import { GiGreekTemple } from "react-icons/gi";
 
 export default function Home() {
     const products = [
@@ -9,11 +10,12 @@ export default function Home() {
     ]
     return (
         <div id="agora-home">
+            <h1 className='text-primary'><GiGreekTemple className='me-3'/>Agora Home</h1><hr/>
             <div id="agora-products">
                 <Row xs={1} md={5} className="g-4">
-                ${products.map((product) => (
+                {products.map((product) => (
                 <Col key={product.name} className="agora-product pt-3" style={{ width: "300px" }}>
-                    <Card>
+                    <Card className='bg-secondary'>
                     <Link href={`/Products/${product._id}/`}
                         className="agora-product-link text-decoration-none text-dark">
                     {/*<CardImg variant="top" src="/images/reactjs.jpg" width="100%" height={160}/>*/}
