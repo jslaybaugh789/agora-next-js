@@ -35,25 +35,25 @@ export default function Profile() {
             <h1 className="text-primary"><GiGreekTemple className="me-2"/> Profile</h1> <hr/>
             {profile && (<div>
             <FormControl id="agora-username" className="mb-2 w-50"
-                defaultValue={profile.username}
+                defaultValue={profile.username} placeholder='Username'
                 onChange={(e) => setProfile({ ...profile, username: e.target.value }) } />
             <FormControl id="agora-password" className="mb-2 w-50"
-                defaultValue={profile.password}
+                defaultValue={profile.password} placeholder='Password'
                 onChange={(e) => setProfile({ ...profile, password: e.target.value }) } />
             <FormControl id="agora-firstname" className="mb-2 w-50"
-                defaultValue={profile.firstName}
+                defaultValue={profile.firstName} placeholder='First Name'
                 onChange={(e) => setProfile({ ...profile, firstName: e.target.value }) } />
             <FormControl id="agora-lastname" className="mb-2 w-50"
-                defaultValue={profile.lastName}
+                defaultValue={profile.lastName} placeholder='Last Name'
                 onChange={(e) => setProfile({ ...profile, lastName: e.target.value }) } />
             <FormControl id="agora-dob" className="mb-2 w-50" type="date"
-                defaultValue={profile.dob}
+                defaultValue={profile.dob} 
                 onChange={(e) => setProfile({ ...profile, dob: e.target.value })} />
             <FormControl id="agora-email" className="mb-2 w-50"
-                defaultValue={profile.email}
+                defaultValue={profile.email} placeholder='Email'
                 onChange={(e) => setProfile({ ...profile, email: e.target.value })} />
             <FormControl id="agora-phone" className="mb-2 w-50"
-                defaultValue={profile.phone}
+                defaultValue={profile.phone} placeholder='Phone Number'
                 onChange={(e) => setProfile({ ...profile, phone: e.target.value })} />
             <select className="form-control mb-2 w-50" id="agora-role" 
                 onChange={(e) => setProfile({ ...profile, role: e.target.value })} >

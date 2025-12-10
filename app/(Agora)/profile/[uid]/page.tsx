@@ -7,7 +7,7 @@ import * as productClient from '../../shop/[sid]/product/[pid]/client';
 import * as wishlistClient from './client';
 import { useEffect, useState } from "react";
 import { GiGreekTemple } from "react-icons/gi";
-import { Button, Card, CardBody, CardText, CardTitle, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, CardBody, CardText, CardTitle, Form, FormControl, ListGroup, ListGroupItem } from "react-bootstrap";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -17,6 +17,7 @@ export default function ProfilePage() {
     const { currentUser } = useSelector((state: RootState) => state.profilesReducer);
     const [profile, setProfile] = useState<any>({});
     const [shops, setShops] = useState<any>([]);
+    const [shop, setShop] = useState<any>({});
     const [products, setProducts] = useState<any>([]);
     const { uid } = useParams();
     const fetchProfile = () => {
@@ -54,6 +55,11 @@ export default function ProfilePage() {
     };
     const removeShop = async (shopId: string) => {
         await shopClient.deleteShop(shopId);
+        getShops();
+    }
+    const addShop = async (shop: any) => {
+        shop.sellerId = user._id;
+        await shopClient.createShop(shop);
         getShops();
     }
     useEffect(() => {
@@ -106,9 +112,6 @@ export default function ProfilePage() {
                             <Link href={`/shop/${shop._id}`}>{shop.name}</Link>
                             {user._id === profile._id &&
                                 <div className='mb-2'>
-                                    <Button className="agora-remove-wishlist-item btn-primary me-3 my-2" onClick={()=>removeShop(shop._id)}> 
-                                        Add Shop
-                                    </Button>
                                     <Button className="agora-remove-wishlist-item btn-danger my-2" onClick={()=>removeShop(shop._id)}> 
                                         Remove Shop
                                     </Button>
@@ -116,6 +119,15 @@ export default function ProfilePage() {
                                 }
                         </ListGroupItem>
                     ))}
+                    {user._id === profile._id &&
+                    <Form>
+                        <FormControl defaultValue={shop.name} className="mb-2 w-50" placeholder="New Shop Name" 
+                            onChange={(e) => setShop({ ...shop, name: e.target.value }) } />
+                        <Button className="agora-remove-wishlist-item btn-primary w-50 me-3 my-2" onClick={()=>(addShop(shop))}> 
+                            Add Shop
+                        </Button>
+                    </Form>
+                    }
                 </ListGroup>
             </div>
             }
