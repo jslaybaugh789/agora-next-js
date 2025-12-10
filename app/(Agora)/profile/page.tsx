@@ -68,8 +68,12 @@ export default function Profile() {
                 Sign Out
             </Button> <hr/>
             
-            {/* Add shops here */}
-            <Button className='w-50 mb-2' id='agora-create-shop-btn'>Create Shop</Button>
+            {profile.role === "SELLER" &&
+            <div>
+                {/* Add shops here */}
+                <Button className='w-50 mb-2' id='agora-create-shop-btn'>Create Shop</Button>
+            </div>
+            }
             </div>)}
         </div>
     )
