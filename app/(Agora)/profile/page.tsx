@@ -4,11 +4,10 @@ import { GiGreekTemple } from "react-icons/gi";
 import * as client from "./client";
 import { setCurrentUser } from "./reducer";
 import { redirect } from "next/dist/client/components/navigation";
-import { Button, FormControl } from "react-bootstrap";
+import { Button, FormControl} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { RootState } from "../store";
-import ProfilePage from "./[uid]/page";
 import Link from "next/link";
 export default function Profile() {
     const [profile, setProfile] = useState<any>({});
@@ -67,13 +66,7 @@ export default function Profile() {
             <Button onClick={signout} className="w-50 mb-2 btn-danger" id="agora-signout-btn">
                 Sign Out
             </Button> <hr/>
-            
-            {profile.role === "SELLER" &&
-            <div>
-                {/* Add shops here */}
-                <Button className='w-50 mb-2' id='agora-create-shop-btn'>Create Shop</Button>
-            </div>
-            }
+            <Link href={`/profile/${profile._id}`}>View Profile Page</Link>
             </div>)}
         </div>
     )
