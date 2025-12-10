@@ -1,22 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import Link from "next/link";
-import { Button, FormControl } from "react-bootstrap";
+import { redirect } from "next/navigation";
+import { setCurrentUser } from "../profile/reducer";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { FormControl, Button } from "react-bootstrap";
+import * as client from "../profile/client";
 import { GiGreekTemple } from "react-icons/gi";
 export default function Register() {
+    const [user, setUser] = useState<any>({});
+    const dispatch = useDispatch();
+    const signup = async () => {
+        const currentUser = await client.signup(user);
+        dispatch(setCurrentUser(currentUser));
+        redirect("/profile");
+    };
     return (
         <div id="agora-login">
             <h1 className="text-primary"><GiGreekTemple className="me-2"/> Register</h1> <hr/>
-            <FormControl //defaultValue={credentials.username}
-                //onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-                id="agora-username"
-                placeholder="username"
-                className="mb-2 w-50"/><br />
-            <FormControl //defaultValue={credentials.password}
-                //onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-                id="agora-password"
-                placeholder="password" type="password"
-                className="mb-2 w-50"/><br />
-            <Button /*onClick={signin}*/ id="agora-register-btn" className="w-50" > Register</Button><br/><br/>
-            <Link id="agora-login-link" href="/login">Log In</Link>
+            <FormControl defaultValue={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}
+                className="agora-username mb-4 w-50" placeholder="username" />
+            <FormControl defaultValue={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })}
+                className="agora-password mb-4 w-50" placeholder="password" type="password"/>
+            <Button onClick={signup} className="agora-register-btn btn btn-primary mb-4 w-50"> Register </Button><br/>
+            <Link href="/login" className="agora-login-link">Log In</Link>
         </div>
     )
 }
