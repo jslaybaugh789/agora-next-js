@@ -8,6 +8,8 @@ import { Button, FormControl } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { RootState } from "../store";
+import ProfilePage from "./[uid]/page";
+import Link from "next/link";
 export default function Profile() {
     const [profile, setProfile] = useState<any>({});
     const dispatch = useDispatch();
@@ -64,7 +66,11 @@ export default function Profile() {
             </Button> <br/>
             <Button onClick={signout} className="w-50 mb-2 btn-danger" id="agora-signout-btn">
                 Sign Out
-            </Button></div>)}
+            </Button> <hr/>
+            
+            {/* Add shops here */}
+            <Button className='w-50 mb-2' id='agora-create-shop-btn'>Create Shop</Button>
+            </div>)}
         </div>
     )
 }
