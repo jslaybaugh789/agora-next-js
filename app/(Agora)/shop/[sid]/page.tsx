@@ -47,6 +47,10 @@ export default function Shop() {
         await productClient.createProduct({...product, shopId: shop._id});
         getProducts();
     }
+    const deleteProduct = async (productId: any) => {
+        await productClient.deleteProduct(productId);
+        getProducts();
+    } 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchProfile();
@@ -56,7 +60,7 @@ export default function Shop() {
     return (
         <div id="agora-shop">
             <h1 className="text-primary"><GiGreekTemple className="me-2"/> Shop: {shop.name}</h1> <hr/>
-            <h3 className='text-primary'> Products</h3>
+            <h3 className='text-primary'> Products</h3> <hr/>
             <Row xs={1} md={5} className="g-4">
             {products && products.map((product: any) => (
                 <ListGroupItem className="p-3 mb-5 me-3 fs-5 w-25 bg-dark text-primary" key={product._id}>
@@ -82,7 +86,8 @@ export default function Shop() {
                                 onClick={()=>editProduct(product._id)}>
                                 Edit Product
                             </Button>
-                            <Button id='agora-edit-product-button' className='btn-danger my-2 me-2 text-wrap'>
+                            <Button id='agora-edit-product-button' className='btn-danger my-2 me-2 text-wrap'
+                                onClick={()=>deleteProduct(product._id)}>
                                 Delete Product
                             </Button>
                         </div>
@@ -94,7 +99,7 @@ export default function Shop() {
             </Row>
             {user.role === "SELLER" && user._id === shop.sellerId &&
             <div>
-                <Card className='w-50 bg-secondary'>
+                <Card className='w-50 bg-secondary mt-3'>
                 <FormControl id="agora-product-name" className="m-3 w-75"
                     defaultValue={product.name} placeholder='Name'
                     onChange={(e) => setProduct({ ...product, name: e.target.value }) } />
