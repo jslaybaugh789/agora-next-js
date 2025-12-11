@@ -21,19 +21,9 @@ export default function Home() {
         } 
     };
     const fetchProducts = async () => {
-        if (!currentUser) {
-            const allProducts = await productClient.findAllProducts();
-            setProducts(allProducts);
-        } else {
-            console.log(currentUser);
-            const wishlists = await wishlistClient.findWishlistsByBuyerId((currentUser as any)._id);
-            const wishlistProducts = [];
-            for (const wishlist of wishlists) {
-                const product = await productClient.findProductById(wishlist.productId);
-                wishlistProducts.push(product);
-            }
-            setProducts(wishlistProducts);
-        }
+        const allProducts = await productClient.findAllProducts();
+        setProducts(allProducts);
+        
     }
     const fetchShops = async () => {
         if (currentUser) {
